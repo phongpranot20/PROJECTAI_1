@@ -56,12 +56,9 @@ export const AVAILABLE_MODELS = [
   "gemini-2.0-flash-lite-001",
   "gemini-2.0-flash",
   "gemini-3.1-flash-lite-preview",
-  "gemini-flash-latest",
   "gemini-3-flash-preview",
   "gemini-3.1-pro-preview",
-  "gemini-1.5-flash",
-  "gemini-1.5-pro",
-  "gemini-pro"
+  "gemini-flash-latest"
 ];
 
 export async function getChatResponseStream(message: string, history: any[] = [], imageBase64?: string, mimeType?: string, lang: 'th' | 'en' = 'th') {
