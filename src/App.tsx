@@ -24,7 +24,6 @@ const TRANSLATIONS = {
     assistant: "Kasetsart Assistant",
     description: "ระบบช่วยเหลือนิสิตอัจฉริยะ พร้อมตอบทุกคำถามเกี่ยวกับมหาวิทยาลัยเกษตรศาสตร์",
     startBtn: "เริ่มต้นใช้งาน",
-    footer: "ศาสตร์แห่งแผ่นดิน • ตั้งแต่ปี 2486",
     placeholder: "ถามอะไรก็ได้เกี่ยวกับ มก. ...",
     processing: "กำลังประมวลผล...",
     error: "เกิดข้อผิดพลาดในการเชื่อมต่อ กรุณาลองใหม่อีกครั้ง",
@@ -50,7 +49,6 @@ const TRANSLATIONS = {
     assistant: "Kasetsart Assistant",
     description: "Intelligent student assistant system, ready to answer all questions about Kasetsart University.",
     startBtn: "Start Now",
-    footer: "Knowledge of the Land • Since 1943",
     placeholder: "Ask anything about KU...",
     processing: "Processing...",
     error: "Connection error. Please try again.",
@@ -386,15 +384,6 @@ export default function App() {
                   <ChevronRight size={20} className="sm:w-6 sm:h-6" />
                 </motion.button>
               </div>
-
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.8 }}
-                className="text-xs text-slate-500 pt-12 uppercase tracking-[0.4em] font-black"
-              >
-                {t.footer}
-              </motion.p>
             </div>
           </motion.div>
         ) : (
