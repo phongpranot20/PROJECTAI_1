@@ -1,6 +1,6 @@
 // Last Update: 5 Apr 2026 - 09:35 (UTC) - Fixed Error Handling
 import React, { useState, useRef, useEffect, useMemo } from 'react';
-import { Send, Bot, User, Loader2, Info, ExternalLink, GraduationCap, Sparkles, MessageSquare, BookOpen, MapPin, Calendar, Menu, X, Image as ImageIcon, Trash2, Globe, ChevronRight } from 'lucide-react';
+import { Send, Bot, User, Loader2, Info, ExternalLink, GraduationCap, Sparkles, MessageSquare, BookOpen, MapPin, Calendar, Menu, X, Image as ImageIcon, Trash2, Globe, ChevronRight, Settings, Save } from 'lucide-react';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { motion, AnimatePresence } from 'motion/react';
@@ -38,6 +38,12 @@ const TRANSLATIONS = {
     calendarLink: "ปฏิทินการศึกษา",
     gradeLink: "คำนวณเกรด",
     examLink: "ตารางสอบ",
+    settings: "ตั้งค่า",
+    apiKeyLabel: "Gemini API Key",
+    apiKeyPlaceholder: "ใส่ API Key ของคุณที่นี่...",
+    save: "บันทึก",
+    close: "ปิด",
+    apiKeySaved: "บันทึก API Key เรียบร้อยแล้ว",
     quickActions: [
       { label: 'ปฏิทินการศึกษา', query: 'ขอปฏิทินการศึกษาปีล่าสุดหน่อย' },
       { label: 'การลงทะเบียน', query: 'ขั้นตอนการลงทะเบียนเรียนทำยังไง' },
@@ -64,6 +70,12 @@ const TRANSLATIONS = {
     calendarLink: "Academic Calendar",
     gradeLink: "Grade Calculation",
     examLink: "Exam Schedule",
+    settings: "Settings",
+    apiKeyLabel: "Gemini API Key",
+    apiKeyPlaceholder: "Enter your API Key here...",
+    save: "Save",
+    close: "Close",
+    apiKeySaved: "API Key saved successfully",
     quickActions: [
       { label: 'Academic Calendar', query: 'Show me the latest academic calendar' },
       { label: 'Registration', query: 'How to register for classes?' },
@@ -204,6 +216,13 @@ export default function App() {
   const [hasStarted, setHasStarted] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [imageMimeType, setImageMimeType] = useState<string | null>(null);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [userApiKey, setUserApiKey] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('gemini_api_key') || '';
+    }
+    return '';
+  });
   
   const scrollRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -451,6 +470,12 @@ export default function App() {
               className="p-2.5 rounded-xl glass-panel hover:bg-emerald-500/20 transition-all hover:scale-110 shadow-lg border-emerald-500/20"
             >
               <Globe size={22} className="text-emerald-400" />
+            </button>
+            <button 
+              onClick={() => setIsSettingsOpen(true)}
+              className="p-2.5 rounded-xl glass-panel hover:bg-emerald-500/20 transition-all hover:scale-110 shadow-lg border-emerald-500/20"
+            >
+              <Settings size={22} className="text-emerald-400" />
             </button>
           </div>
         </header>
@@ -709,6 +734,74 @@ export default function App() {
           </main>
         </div>
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Settings Modal */}
+      <AnimatePresence>
+        {isSettingsOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsSettingsOpen(false)}
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            />
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              className="relative w-full max-w-md glass-panel p-6 sm:p-8 rounded-3xl shadow-2xl space-y-6"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-emerald-500/10 rounded-xl text-emerald-400">
+                    <Settings size={24} />
+                  </div>
+                  <h2 className="text-xl font-black uppercase tracking-widest text-white">{t.settings}</h2>
+                </div>
+                <button 
+                  onClick={() => setIsSettingsOpen(false)}
+                  className="p-2 text-slate-400 hover:text-white transition-colors"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-1">
+                    {t.apiKeyLabel}
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="password"
+                      value={userApiKey}
+                      onChange={(e) => setUserApiKey(e.target.value)}
+                      placeholder={t.apiKeyPlaceholder}
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-2xl text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 ring-emerald-500/50 transition-all font-mono text-sm"
+                    />
+                  </div>
+                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider ml-1">
+                    * เก็บไว้ในเครื่องของคุณเท่านั้น (LocalStorage)
+                  </p>
+                </div>
+
+                <button
+                  onClick={() => {
+                    localStorage.setItem('gemini_api_key', userApiKey);
+                    setIsSettingsOpen(false);
+                    alert(t.apiKeySaved);
+                  }}
+                  className="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-2xl font-black uppercase tracking-widest transition-all flex items-center justify-center gap-3 shadow-lg btn-glow"
+                >
+                  <Save size={18} />
+                  {t.save}
+                </button>
+              </div>
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </div>

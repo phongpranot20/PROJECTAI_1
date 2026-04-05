@@ -62,10 +62,13 @@ export const AVAILABLE_MODELS = [
 ];
 
 export async function getChatResponseStream(message: string, history: any[] = [], imageBase64?: string, mimeType?: string, lang: 'th' | 'en' = 'th') {
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY || import.meta.env.GEMINI_API_KEY;
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || 
+                 (typeof window !== 'undefined' ? localStorage.getItem('gemini_api_key') : null) ||
+                 process.env.GEMINI_API_KEY || 
+                 import.meta.env.GEMINI_API_KEY;
   
   if (!apiKey || apiKey === "undefined" || apiKey === "") {
-    throw new Error("ไม่พบ API Key กรุณาตรวจสอบการตั้งค่าใน Vercel หรือ Settings (แนะนำให้ใช้ชื่อ VITE_GEMINI_API_KEY)");
+    throw new Error("ไม่พบ API Key กรุณาไปที่ Settings แล้วใส่ API Key (แนะนำให้ใช้ชื่อ VITE_GEMINI_API_KEY ใน Vercel)");
   }
 
   const ai = new GoogleGenAI({ apiKey });
@@ -133,10 +136,13 @@ export async function getChatResponseStream(message: string, history: any[] = []
 }
 
 export async function getChatResponse(message: string, history: any[] = [], imageBase64?: string, mimeType?: string) {
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY || import.meta.env.GEMINI_API_KEY;
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || 
+                 (typeof window !== 'undefined' ? localStorage.getItem('gemini_api_key') : null) ||
+                 process.env.GEMINI_API_KEY || 
+                 import.meta.env.GEMINI_API_KEY;
   
   if (!apiKey || apiKey === "undefined" || apiKey === "") {
-    throw new Error("ไม่พบ API Key กรุณาตรวจสอบการตั้งค่าใน Vercel หรือ Settings (แนะนำให้ใช้ชื่อ VITE_GEMINI_API_KEY)");
+    throw new Error("ไม่พบ API Key กรุณาไปที่ Settings แล้วใส่ API Key (แนะนำให้ใช้ชื่อ VITE_GEMINI_API_KEY ใน Vercel)");
   }
 
   const ai = new GoogleGenAI({ apiKey });
@@ -200,14 +206,17 @@ export async function getChatResponse(message: string, history: any[] = [], imag
 
 function handleGeminiError(error: any) {
   const errorMsg = error?.message || String(error);
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY || import.meta.env.GEMINI_API_KEY || "";
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || 
+                 (typeof window !== 'undefined' ? localStorage.getItem('gemini_api_key') : null) ||
+                 process.env.GEMINI_API_KEY || 
+                 import.meta.env.GEMINI_API_KEY || "";
   const maskedKey = apiKey ? `${apiKey.substring(0, 8)}...` : "ไม่พบคีย์";
-  const lastUpdate = "5 เม.ย. 2569 - 09:42 (UTC)"; // เวอร์ชันล่าสุด (รองรับคีย์ทั้งสองชื่อ)
+  const lastUpdate = "5 เม.ย. 2569 - 10:02 (UTC)"; // รองรับ localStorage และ Vercel
 
   if (errorMsg.includes('429') || errorMsg.includes('RESOURCE_EXHAUSTED')) {
-    throw new Error(`❌ โควต้าเต็ม (Quota Exceeded)\n\n🕒 เวอร์ชันแอป: ${lastUpdate}\n🔑 คีย์ที่ใช้อยู่: ${maskedKey}\n\n**วิธีแก้ที่ได้ผลที่สุด:**\n1. ไปที่ [AI Studio](https://aistudio.google.com/app/apikey)\n2. กดปุ่ม **"Create API key in new project"** (ห้ามสร้างในโปรเจกต์เดิม)\n3. คัดลอกคีย์ใหม่มาใส่ใน Settings ของแอปนี้\n4. หากยังไม่ได้ ให้ลองสลับไปใช้เน็ตมือถือหรือ VPN เพราะบางครั้ง Google บล็อกที่ IP ครับ`);
+    throw new Error(`❌ กรุณาไปที่ Settings แล้วใส่ API Key หรือเปลี่ยนคีย์ใหม่ (โควต้าเต็ม)\n\n🕒 เวอร์ชันแอป: ${lastUpdate}\n🔑 คีย์ที่ใช้อยู่: ${maskedKey}`);
   }
 
   // แจ้ง Error อื่นๆ ตามที่ผู้ใช้ขอ
-  throw new Error(`❌ เกิดข้อผิดพลาด: ${errorMsg}\n\n🕒 เวอร์ชันแอป: ${lastUpdate}\n🔑 คีย์ที่ใช้อยู่: ${maskedKey}\n\n**คำแนะนำสำหรับ Vercel:**\n1. หากคุณเห็นชื่อโมเดลเก่า (เช่น gemini-pro) แสดงว่า Vercel ยังใช้โค้ดเก่าอยู่ ให้กด **Redeploy** ในหน้า Vercel Dashboard\n2. ตรวจสอบว่าใน Vercel ตั้งชื่อตัวแปรว่า \`VITE_GEMINI_API_KEY\` (ต้องมีคำว่า VITE_ นำหน้า)`);
+  throw new Error(`❌ เกิดข้อผิดพลาด: ${errorMsg}\n\n🕒 เวอร์ชันแอป: ${lastUpdate}\n🔑 คีย์ที่ใช้อยู่: ${maskedKey}\n\n**คำแนะนำสำหรับ Vercel:**\n1. ตรวจสอบว่าใน Vercel ตั้งชื่อตัวแปรว่า \`VITE_GEMINI_API_KEY\`\n2. หากใช้คีย์ส่วนตัว ให้ตรวจสอบใน Settings ของแอป`);
 }
