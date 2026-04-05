@@ -62,10 +62,13 @@ export const AVAILABLE_MODELS = [
 ];
 
 export async function getChatResponseStream(message: string, history: any[] = [], imageBase64?: string, mimeType?: string, lang: 'th' | 'en' = 'th') {
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY || import.meta.env.GEMINI_API_KEY;
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || 
+                 (typeof window !== 'undefined' ? localStorage.getItem('gemini_api_key') : null) ||
+                 process.env.GEMINI_API_KEY || 
+                 import.meta.env.GEMINI_API_KEY;
   
   if (!apiKey || apiKey === "undefined" || apiKey === "") {
-    throw new Error("ไม่พบ API Key กรุณาตรวจสอบการตั้งค่าใน Vercel หรือ Settings (แนะนำให้ใช้ชื่อ VITE_GEMINI_API_KEY)");
+    throw new Error("ไม่พบ API Key กรุณาไปที่ Settings แล้วใส่ API Key หรือตั้งค่า VITE_GEMINI_API_KEY ใน Cloudflare Dashboard");
   }
 
   const ai = new GoogleGenAI({ apiKey });
@@ -133,10 +136,13 @@ export async function getChatResponseStream(message: string, history: any[] = []
 }
 
 export async function getChatResponse(message: string, history: any[] = [], imageBase64?: string, mimeType?: string) {
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY || import.meta.env.GEMINI_API_KEY;
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || 
+                 (typeof window !== 'undefined' ? localStorage.getItem('gemini_api_key') : null) ||
+                 process.env.GEMINI_API_KEY || 
+                 import.meta.env.GEMINI_API_KEY;
   
   if (!apiKey || apiKey === "undefined" || apiKey === "") {
-    throw new Error("ไม่พบ API Key กรุณาตรวจสอบการตั้งค่าใน Vercel หรือ Settings (แนะนำให้ใช้ชื่อ VITE_GEMINI_API_KEY)");
+    throw new Error("ไม่พบ API Key กรุณาไปที่ Settings แล้วใส่ API Key หรือตั้งค่า VITE_GEMINI_API_KEY ใน Cloudflare Dashboard");
   }
 
   const ai = new GoogleGenAI({ apiKey });
@@ -200,10 +206,16 @@ export async function getChatResponse(message: string, history: any[] = [], imag
 
 function handleGeminiError(error: any) {
   const errorMsg = error?.message || String(error);
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || 
+                 (typeof window !== 'undefined' ? localStorage.getItem('gemini_api_key') : null) ||
+                 process.env.GEMINI_API_KEY || 
+                 import.meta.env.GEMINI_API_KEY || "";
+  const maskedKey = apiKey ? `${apiKey.substring(0, 8)}...` : "ไม่พบคีย์";
+  const lastUpdate = "5 เม.ย. 2569 - 10:30 (UTC)"; // เวอร์ชัน Cloudflare
 
   if (errorMsg.includes('429') || errorMsg.includes('RESOURCE_EXHAUSTED')) {
-    throw new Error(`เกิดข้อผิดพลาดในการเชื่อมต่อ กรุณาลองใหม่อีกครั้งในอีกสักครู่ หากยังไม่ได้ให้ติดต่อผู้ดูแลระบบ`);
+    throw new Error(`❌ โควต้าเต็มหรือคีย์มีปัญหา\n\n🕒 เวอร์ชันแอป: ${lastUpdate}\n🔑 คีย์ที่ใช้อยู่: ${maskedKey}\n\n**คำแนะนำ:** กรุณาเปลี่ยน API Key ใน Settings หรือรอสักครู่แล้วลองใหม่ครับ`);
   }
 
-  throw new Error(`เกิดข้อผิดพลาดในการเชื่อมต่อ กรุณาลองใหม่อีกครั้งในอีกสักครู่ หากยังไม่ได้ให้ติดต่อผู้ดูแลระบบ`);
+  throw new Error(`❌ เกิดข้อผิดพลาด: ${errorMsg}\n\n**คำแนะนำสำหรับ Cloudflare:**\n1. ตรวจสอบว่าตั้งชื่อ Environment Variable ว่า \`VITE_GEMINI_API_KEY\` ในหน้า Settings > Variables ของ Cloudflare Pages\n2. หากเพิ่งตั้งค่า อย่าลืมกด **"Create a new deployment"** เพื่อให้ค่าใหม่ทำงานครับ`);
 }
