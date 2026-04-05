@@ -211,16 +211,7 @@ export default function App() {
   const t = TRANSLATIONS[lang];
 
   useEffect(() => {
-    if (messages.length === 0) {
-      setMessages([
-        {
-          role: 'model',
-          text: lang === 'th' 
-            ? 'สวัสดีครับ! ผมคือ **Kasetsart AI Assistant** ยินดีที่ได้รู้จักครับ 🌿\n\nผมพร้อมช่วยเหลือคุณในทุกเรื่องเกี่ยวกับมหาวิทยาลัยเกษตรศาสตร์ มีอะไรให้ผมช่วยไหมครับ?'
-            : 'Hello! I am **Kasetsart AI Assistant**. Nice to meet you! 🌿\n\nI am ready to help you with anything about Kasetsart University. How can I assist you today?',
-        },
-      ]);
-    }
+    // Initial message removed as per user request
   }, [lang]);
 
   useEffect(() => {
