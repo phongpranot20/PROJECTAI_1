@@ -1,4 +1,4 @@
-// Last Update: 31 Mar 2026 - 00:04 (UTC)
+// Last Update: 5 Apr 2026 - 09:35 (UTC) - Fixed Error Handling
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { Send, Bot, User, Loader2, Info, ExternalLink, GraduationCap, Sparkles, MessageSquare, BookOpen, MapPin, Calendar, Menu, X, Image as ImageIcon, Trash2, Globe, ChevronRight } from 'lucide-react';
 import Markdown from 'react-markdown';
@@ -315,11 +315,7 @@ export default function App() {
 
     } catch (error: any) {
       console.error('Chat Error:', error);
-      let errorMessage = error.message || t.error;
-      
-      if (errorMessage.includes('429') || errorMessage.includes('RESOURCE_EXHAUSTED')) {
-        errorMessage = t.quotaExceeded;
-      }
+      const errorMessage = error.message || t.error;
       
       setMessages((prev) => [
         ...prev,
