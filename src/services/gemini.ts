@@ -83,10 +83,13 @@ export async function getChatResponseStream(
   mimeType?: string,
   lang: 'th' | 'en' = 'en'
 ) {
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || import.meta.env.GEMINI_API_KEY;
+  const apiKey = 
+    process.env.GEMINI_API_KEY || 
+    import.meta.env.VITE_GEMINI_API_KEY || 
+    localStorage.getItem('gemini_api_key');
 
   if (!apiKey || apiKey === 'undefined' || apiKey === '') {
-    throw new Error('API Key not found. Please check Vercel settings (VITE_GEMINI_API_KEY)');
+    throw new Error('API Key not found. Please check Vercel settings (VITE_GEMINI_API_KEY) or enter it in Settings.');
   }
 
   const model = await loadBestModel(apiKey);
@@ -140,10 +143,13 @@ export async function getChatResponse(
   imageBase64?: string,
   mimeType?: string
 ) {
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || import.meta.env.GEMINI_API_KEY;
+  const apiKey = 
+    process.env.GEMINI_API_KEY || 
+    import.meta.env.VITE_GEMINI_API_KEY || 
+    localStorage.getItem('gemini_api_key');
 
   if (!apiKey || apiKey === 'undefined' || apiKey === '') {
-    throw new Error('API Key not found. Please check Vercel settings (VITE_GEMINI_API_KEY)');
+    throw new Error('API Key not found. Please check Vercel settings (VITE_GEMINI_API_KEY) or enter it in Settings.');
   }
 
   const model = await loadBestModel(apiKey);

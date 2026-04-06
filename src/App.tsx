@@ -42,7 +42,7 @@ const TRANSLATIONS = {
       { label: 'การลงทะเบียน', query: 'ขั้นตอนการลงทะเบียนเรียนทำยังไง' },
       { label: 'แผนที่วิทยาเขต', query: 'ขอแผนที่มหาวิทยาลัยเกษตรศาสตร์ บางเขน' },
       { label: 'รถตะลัย', query: 'ตารางเดินรถตะลัยสายต่างๆ' },
-    ]
+    ],
   },
   en: {
     welcome: "Welcome to",
@@ -67,11 +67,39 @@ const TRANSLATIONS = {
       { label: 'Registration', query: 'How to register for classes?' },
       { label: 'Campus Map', query: 'Show me the Kasetsart University Bangkhen map' },
       { label: 'KU Bus', query: 'KU bus routes and schedules' },
-    ]
+    ],
   }
 };
 
 // --- Components ---
+
+const MessageAvatar = ({ role }: { role: 'user' | 'model' }) => {
+  const [error, setError] = useState(false);
+  
+  const userImg = "https://media.discordapp.net/attachments/1474717456403660865/1490073733312811251/image.png?ex=69d2bace&is=69d1694e&hm=389f731dcfef04293b8054df817d519f9837ffdc60751d0fc5792b37c6d51fd3&=&format=webp&quality=lossless";
+  const botImg = "https://media.discordapp.net/attachments/1474717456403660865/1490106738978852884/image.png?ex=69d2d98b&is=69d1880b&hm=e4e876151ce4fed195eb31beef32e7a05c6ecac1a98f75ffedfb3edbfe7575fa&=&format=webp&quality=lossless&width=413&height=438";
+
+  return (
+    <div className={cn(
+      "w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl flex items-center justify-center shrink-0 shadow-lg overflow-hidden",
+      role === 'user' 
+        ? "bg-slate-800 border border-white/5" 
+        : "bg-emerald-600 text-white"
+    )}>
+      {!error ? (
+        <img 
+          src={role === 'user' ? userImg : botImg} 
+          alt={role === 'user' ? "User" : "AI"} 
+          className="w-full h-full object-cover"
+          referrerPolicy="no-referrer"
+          onError={() => setError(true)}
+        />
+      ) : (
+        role === 'user' ? <User size={20} /> : <Bot size={20} />
+      )}
+    </div>
+  );
+};
 
 const Stars = () => {
   const stars = useMemo(() => {
@@ -421,11 +449,7 @@ export default function App() {
             </div>
           </div>
           
-          <div className="flex items-center gap-6">
-            <div className="hidden md:flex flex-col items-end">
-              <span className="text-[18px] font-black text-emerald-400 uppercase tracking-wider leading-none mb-1">{t.university}</span>
-              <span className="text-[12px] text-slate-400 font-bold uppercase tracking-[0.3em]">{t.knowledge}</span>
-            </div>
+          <div className="flex items-center gap-2 sm:gap-4">
             <button 
               onClick={() => setLang(lang === 'th' ? 'en' : 'th')}
               className="p-2.5 rounded-xl glass-panel hover:bg-emerald-500/20 transition-all hover:scale-110 shadow-lg border-emerald-500/20"
@@ -503,28 +527,7 @@ export default function App() {
                     msg.role === 'user' ? "flex-row-reverse" : "flex-row"
                   )}
                 >
-                  <div className={cn(
-                    "w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl flex items-center justify-center shrink-0 shadow-lg overflow-hidden",
-                    msg.role === 'user' 
-                      ? "bg-slate-800 border border-white/5" 
-                      : "bg-emerald-600 text-white"
-                  )}>
-                    {msg.role === 'user' ? (
-                      <img 
-                        src="https://media.discordapp.net/attachments/1474717456403660865/1490073733312811251/image.png?ex=69d2bace&is=69d1694e&hm=389f731dcfef04293b8054df817d519f9837ffdc60751d0fc5792b37c6d51fd3&=&format=webp&quality=lossless" 
-                        alt="User" 
-                        className="w-full h-full object-cover"
-                        referrerPolicy="no-referrer"
-                      />
-                    ) : (
-                      <img 
-                        src="https://media.discordapp.net/attachments/1474717456403660865/1490106738978852884/image.png?ex=69d2d98b&is=69d1880b&hm=e4e876151ce4fed195eb31beef32e7a05c6ecac1a98f75ffedfb3edbfe7575fa&=&format=webp&quality=lossless&width=413&height=438" 
-                        alt="AI" 
-                        className="w-full h-full object-cover"
-                        referrerPolicy="no-referrer"
-                      />
-                    )}
-                  </div>
+                  <MessageAvatar role={msg.role} />
                   
                   <div className={cn(
                     "flex flex-col max-w-[85%] sm:max-w-[70%]",
