@@ -76,8 +76,8 @@ const TRANSLATIONS = {
 const MessageAvatar = ({ role }: { role: 'user' | 'model' }) => {
   const [error, setError] = useState(false);
   
-  const userImg = "https://media.discordapp.net/attachments/1474717456403660865/1490073733312811251/image.png?ex=69d4b50e&is=69d3638e&hm=51bccafb4edd608f68de025a3331b63b81ce8976bcff7f1376cdcc38818122a8&=&format=webp&quality=lossless&width=341&height=438";
-  const botImg = "https://media.discordapp.net/attachments/1474717456403660865/1490106738978852884/image.png?ex=69d4d3cb&is=69d3824b&hm=6daa942dbe9f0b83b6deaa3ce791a8b5f4655d4969156e5bfffd86405b766b48&=&format=webp&quality=lossless&width=514&height=545";
+  const userImg = "/avatars/user.png";
+  const botImg = "/avatars/bot.png";
 
   return (
     <div className={cn(
@@ -622,7 +622,7 @@ export default function App() {
                 <div className="flex gap-3 sm:gap-4">
                   <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-emerald-600 flex items-center justify-center shrink-0 overflow-hidden shadow-lg">
                     <img 
-                      src="https://media.discordapp.net/attachments/1474717456403660865/1490106738978852884/image.png?ex=69d4d3cb&is=69d3824b&hm=6daa942dbe9f0b83b6deaa3ce791a8b5f4655d4969156e5bfffd86405b766b48&=&format=webp&quality=lossless&width=514&height=545" 
+                      src="/avatars/bot.png" 
                       alt="AI" 
                       className="w-full h-full object-cover"
                       referrerPolicy="no-referrer"
