@@ -221,6 +221,22 @@ const GalaxyBackground = () => {
   );
 };
 
+// --- FAQ Fixed Answers ---
+const FAQ_ANSWERS = {
+  th: {
+    'ขอปฏิทินการศึกษาปีล่าสุดหน่อย': '### 📅 ปฏิทินการศึกษา มก.\n\nคุณสามารถตรวจสอบปฏิทินการศึกษาล่าสุด (วันเปิด-ปิดเทอม, วันเพิ่ม-ลดรายวิชา, วันสอบ) ได้ที่เว็บไซต์สำนักบริหารการศึกษา:\n\n🔗 [ปฏิทินการศึกษา มหาวิทยาลัยเกษตรศาสตร์](https://registrar.ku.ac.th/calendar)',
+    'ขั้นตอนการลงทะเบียนเรียนทำยังไง': '### 📝 ขั้นตอนการลงทะเบียนเรียน\n\n1. **เข้าระบบ**: เข้าไปที่ [my.ku.th](https://my.ku.th)\n2. **ตรวจสอบรายวิชา**: ดูรหัสวิชาและหมู่เรียนที่ต้องการในระบบ\n3. **เพิ่มวิชา**: ใส่รหัสวิชาและกดบันทึก\n4. **ยืนยันการลงทะเบียน**: ตรวจสอบความถูกต้องและยืนยันในระบบ\n5. **ชำระเงิน**: ดำเนินการชำระค่าธรรมเนียมการศึกษาตามกำหนดการ\n\n*หากติดปัญหา "หมู่เรียนเต็ม" ให้ดำเนินการขอ "ลงทะเบียนเพิ่ม (Add-Mue)" จากอาจารย์ผู้สอนครับ*',
+    'ขอแผนที่มหาวิทยาลัยเกษตรศาสตร์ บางเขน': '### 🗺️ แผนที่ มก. บางเขน\n\nนี่คือแผนที่รวมอาคารและสถานที่ต่างๆ ภายในวิทยาเขตบางเขนครับ:\n\n📍 [คลิกเพื่อดูแผนที่ Google Maps: มหาวิทยาลัยเกษตรศาสตร์ บางเขน](https://www.google.com/maps/search/Kasetsart+University+Bangkhen)\n\nคุณสามารถเดินเข้าจากทางประตูพหลโยธิน หรือประตูวิภาวดีได้ครับ',
+    'ตารางเดินรถตะลัยสายต่างๆ': '### 🚌 รถตะลัย (KU Bus)\n\nรถตะลัยภายใน มก. บางเขน มีทั้งหมด 5 สายหลัก:\n\n*   **สาย 1**: วิ่งรอบนอก (พหลโยธิน - งามวงศ์วาน)\n*   **สาย 2**: วิ่งโซนหอพัก - คณะเกษตร\n*   **สาย 3**: วิ่งเชื่อมต่อสำนักกีฬา - ประตูวิภาวดี\n*   **สาย 4**: วิ่งโซนคณะวิศวกรรมศาสตร์ - บาร์ใหม่\n*   **สาย 5**: สายสีชมพู (วิ่งเชื่อมต่อ BTS มหาวิทยาลัยเกษตรศาสตร์)\n\nตรวจสอบเส้นทางแบบ Real-time ได้ผ่านแอปพลิเคชัน **ViaBus** ครับ',
+  },
+  en: {
+    'Show me the latest academic calendar': '### 📅 KU Academic Calendar\n\nYou can check the latest academic calendar (start-end dates, add-drop period, exam dates) at the Registrar\'s Office website:\n\n🔗 [KU Academic Calendar](https://registrar.ku.ac.th/calendar)',
+    'How to register for classes?': '### 📝 Registration Steps\n\n1. **Login**: Go to [my.ku.th](https://my.ku.th)\n2. **Check Courses**: Find course codes and sections in the system.\n3. **Add Courses**: Enter course code and save.\n4. **Confirm**: Review and confirm your registration.\n5. **Payment**: Pay the tuition fees according to the schedule.\n\n*If a section is full, you need to request a "Manual Add (Add-Mue)" from the instructor.*',
+    'Show me the Kasetsart University Bangkhen map': '### 🗺️ KU Bangkhen Map\n\nHere is the map of buildings and locations within the Bangkhen campus:\n\n📍 [Click to view Google Maps: Kasetsart University Bangkhen](https://www.google.com/maps/search/Kasetsart+University+Bangkhen)',
+    'KU bus routes and schedules': '### 🚌 KU Bus (Rot Talai)\n\nThere are 5 main routes at KU Bangkhen:\n\n*   **Route 1**: Outer loop (Phahonyothin - Ngamwongwan)\n*   **Route 2**: Dormitory zone - Faculty of Agriculture\n*   **Route 3**: Sports complex - Vibhavadi gate\n*   **Route 4**: Faculty of Engineering - Bar Mai\n*   **Route 5**: Pink line (Connects to BTS Kasetsart University)\n\nYou can track the buses in real-time using the **ViaBus** app.',
+  }
+};
+
 export default function App() {
   const [lang, setLang] = useState<Language>('th');
   const [messages, setMessages] = useState<Message[]>([]);
@@ -280,6 +296,16 @@ export default function App() {
     setIsLoading(true);
 
     try {
+      // Check for FAQ Fixed Answers first (saves tokens)
+      const faqAnswer = (FAQ_ANSWERS as any)[lang]?.[userMessage];
+      if (faqAnswer && !currentImage) {
+        // Simulate a small delay for natural feeling
+        await new Promise(resolve => setTimeout(resolve, 500));
+        setMessages((prev) => [...prev, { role: 'model', text: faqAnswer }]);
+        setIsLoading(false);
+        return;
+      }
+
       const history = messages.map((m) => ({
         role: m.role,
         parts: [{ text: m.text }],
