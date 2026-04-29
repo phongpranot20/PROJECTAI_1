@@ -226,16 +226,78 @@ const FAQ_ANSWERS = {
   th: {
     'ขอปฏิทินการศึกษาปีล่าสุดหน่อย': '### 📅 ปฏิทินการศึกษา มก.\n\nคุณสามารถตรวจสอบปฏิทินการศึกษาล่าสุด (วันเปิด-ปิดเทอม, วันเพิ่ม-ลดรายวิชา, วันสอบ) ได้ที่เว็บไซต์สำนักบริหารการศึกษา:\n\n🔗 [ปฏิทินการศึกษา มหาวิทยาลัยเกษตรศาสตร์](https://registrar.ku.ac.th/calendar)',
     'ขั้นตอนการลงทะเบียนเรียนทำยังไง': '### 📝 ขั้นตอนการลงทะเบียนเรียน\n\n1. **เข้าระบบ**: เข้าไปที่ [my.ku.th](https://my.ku.th)\n2. **ตรวจสอบรายวิชา**: ดูรหัสวิชาและหมู่เรียนที่ต้องการในระบบ\n3. **เพิ่มวิชา**: ใส่รหัสวิชาและกดบันทึก\n4. **ยืนยันการลงทะเบียน**: ตรวจสอบความถูกต้องและยืนยันในระบบ\n5. **ชำระเงิน**: ดำเนินการชำระค่าธรรมเนียมการศึกษาตามกำหนดการ\n\n*หากติดปัญหา "หมู่เรียนเต็ม" ให้ดำเนินการขอ "ลงทะเบียนเพิ่ม (Add-Mue)" จากอาจารย์ผู้สอนครับ*',
-    'ขอแผนที่มหาวิทยาลัยเกษตรศาสตร์ บางเขน': '### 🗺️ แผนที่ มก. บางเขน\n\nนี่คือแผนที่รวมอาคารและสถานที่ต่างๆ ภายในวิทยาเขตบางเขนครับ:\n\n📍 [คลิกเพื่อดูแผนที่ Google Maps: มหาวิทยาลัยเกษตรศาสตร์ บางเขน](https://www.google.com/maps/search/Kasetsart+University+Bangkhen)\n\nคุณสามารถเดินเข้าจากทางประตูพหลโยธิน หรือประตูวิภาวดีได้ครับ',
-    'ตารางเดินรถตะลัยสายต่างๆ': '### 🚌 รถตะลัย (KU Bus)\n\nรถตะลัยภายใน มก. บางเขน มีทั้งหมด 5 สายหลัก:\n\n*   **สาย 1**: วิ่งรอบนอก (พหลโยธิน - งามวงศ์วาน)\n*   **สาย 2**: วิ่งโซนหอพัก - คณะเกษตร\n*   **สาย 3**: วิ่งเชื่อมต่อสำนักกีฬา - ประตูวิภาวดี\n*   **สาย 4**: วิ่งโซนคณะวิศวกรรมศาสตร์ - บาร์ใหม่\n*   **สาย 5**: สายสีชมพู (วิ่งเชื่อมต่อ BTS มหาวิทยาลัยเกษตรศาสตร์)\n\nตรวจสอบเส้นทางแบบ Real-time ได้ผ่านแอปพลิเคชัน **ViaBus** ครับ',
+    'ขอแผนที่มหาวิทยาลัยเกษตรศาสตร์': '### 🗺️ แผนที่วิทยาเขตต่างๆ ของ มก.\n\nนี่คือลิงก์แผนที่ Google Maps สำหรับวิทยาเขตต่างๆ ครับ:\n\n*   📍 [วิทยาเขตบางเขน](https://www.google.com/maps/search/Kasetsart+University+Bangkhen)\n*   📍 [วิทยาเขตกำแพงแสน](https://www.google.com/maps/search/Kasetsart+University+Kamphaeng+Saen)\n*   📍 [วิทยาเขตศรีราชา](https://www.google.com/maps/search/Kasetsart+University+Sriracha)\n*   📍 [วิทยาเขตเฉลิมพระเกียรติ จ.สกลนคร](https://www.google.com/maps/search/Kasetsart+University+Sakon+Nakhon)',
+    'ตารางเดินรถตะลัยสายต่างๆ': '### 🚌 ตารางการให้บริการรถตะลัย (KU Bus)\n\n**📅 วันจันทร์ - วันศุกร์**\n*   ให้บริการสาย 1, 3, 5 (สายละ 5 คัน)\n*   เวลา: 06.30 น. – 18.30 น. และ 18.30 – 21.30 น.\n\n**📅 วันเสาร์**\n*   ให้บริการสาย 1, 3, 5 (สายละ 2 คัน)\n*   เวลา: 07.00 น. – 17.00 น.\n\n**📅 วันอาทิตย์**\n*   ให้บริการสาย 1, 5 (สายละ 2 คัน)\n*   เวลา: 07.00 น. – 17.00 น.\n\n🔗 [ดูรายละเอียดเส้นทางเดินรถเพิ่มเติม](https://www.ku.ac.th/th/car-service-routes-in-maha-vickya-sai)\n\n*ตรวจสอบเส้นทางแบบ Real-time ได้ผ่านแอปพลิเคชัน **ViaBus** ครับ*',
   },
   en: {
     'Show me the latest academic calendar': '### 📅 KU Academic Calendar\n\nYou can check the latest academic calendar (start-end dates, add-drop period, exam dates) at the Registrar\'s Office website:\n\n🔗 [KU Academic Calendar](https://registrar.ku.ac.th/calendar)',
     'How to register for classes?': '### 📝 Registration Steps\n\n1. **Login**: Go to [my.ku.th](https://my.ku.th)\n2. **Check Courses**: Find course codes and sections in the system.\n3. **Add Courses**: Enter course code and save.\n4. **Confirm**: Review and confirm your registration.\n5. **Payment**: Pay the tuition fees according to the schedule.\n\n*If a section is full, you need to request a "Manual Add (Add-Mue)" from the instructor.*',
-    'Show me the Kasetsart University Bangkhen map': '### 🗺️ KU Bangkhen Map\n\nHere is the map of buildings and locations within the Bangkhen campus:\n\n📍 [Click to view Google Maps: Kasetsart University Bangkhen](https://www.google.com/maps/search/Kasetsart+University+Bangkhen)',
-    'KU bus routes and schedules': '### 🚌 KU Bus (Rot Talai)\n\nThere are 5 main routes at KU Bangkhen:\n\n*   **Route 1**: Outer loop (Phahonyothin - Ngamwongwan)\n*   **Route 2**: Dormitory zone - Faculty of Agriculture\n*   **Route 3**: Sports complex - Vibhavadi gate\n*   **Route 4**: Faculty of Engineering - Bar Mai\n*   **Route 5**: Pink line (Connects to BTS Kasetsart University)\n\nYou can track the buses in real-time using the **ViaBus** app.',
+    'Show me the Kasetsart University campus maps': '### 🗺️ KU Campus Maps\n\nHere are the Google Maps links for all Kasetsart University campuses:\n\n*   📍 [Bangkhen Campus](https://www.google.com/maps/search/Kasetsart+University+Bangkhen)\n*   📍 [Kamphaeng Saen Campus](https://www.google.com/maps/search/Kasetsart+University+Kamphaeng+Saen)\n*   📍 [Sriracha Campus](https://www.google.com/maps/search/Kasetsart+University+Sriracha)\n*   📍 [School of Management (Sakon Nakhon)](https://www.google.com/maps/search/Kasetsart+University+Sakon+Nakhon)',
+    'KU bus routes and schedules': '### 🚌 KU Bus (Rot Talai) Schedule\n\n**📅 Monday - Friday**\n*   Routes 1, 3, 5 (5 buses each)\n*   Hours: 06:30 - 18:30 and 18:30 - 21:30\n\n**📅 Saturday**\n*   Routes 1, 3, 5 (2 buses each)\n*   Hours: 07:00 - 17:00\n\n**📅 Sunday**\n*   Routes 1, 5 (2 buses each)\n*   Hours: 07:00 - 17:00\n\n🔗 [More Information & Routes](https://www.ku.ac.th/th/car-service-routes-in-maha-vickya-sai)\n\n*You can track the buses in real-time using the **ViaBus** app.*',
   }
 };
+
+// --- Form PDF Resource Links ---
+const FORM_LINKS = [
+  {
+    title: "📝 คำร้องขอลงทะเบียนเรียน (Registrar-2)",
+    link: "https://registrar.ku.ac.th/wp-content/uploads/2024/11/Request-for-Registration.pdf",
+    keywords: ["ลงทะเบียนเรียน", "ขอลงทะเบียน", "ใบลงทะเบียน", "registration", "registrar-2"]
+  },
+  {
+    title: "📄 คำร้องทั่วไป (Registrar-1)",
+    link: "https://registrar.ku.ac.th/wp-content/uploads/2023/11/General-Request.pdf",
+    keywords: ["คำร้องทั่วไป", "ติดต่อทะเบียน", "เขียนคำร้อง", "general request", "registrar-1"]
+  },
+  {
+    title: "💰 คำร้องขอผ่อนผันค่าธรรมเนียมการศึกษา (Registrar-3)",
+    link: "https://registrar.ku.ac.th/wp-content/uploads/2024/11/Postpone-tuition-and-fee-payments.pdf",
+    keywords: ["ผ่อนผันค่าเทอม", "จ่ายค่าเทอมช้า", "เลื่อนจ่ายเงิน", "postpone tuition", "registrar-3"]
+  },
+  {
+    title: "⏸️ ใบลาพักการศึกษา (Registrar-10)",
+    link: "https://registrar.ku.ac.th/wp-content/uploads/2023/11/Request-for-Leave-of-Absence-Request.pdf",
+    keywords: ["ดรอปเรียน", "ลาพักการเรียน", "พักการศึกษา", "leave of absence", "registrar-10"]
+  },
+  {
+    title: "🚪 ใบลาออก (Resignation Form)",
+    link: "https://registrar.ku.ac.th/wp-content/uploads/2023/11/Resignation-Form.pdf",
+    keywords: ["ลาออก", "เลิกเรียน", "resignation", "registrar-16"]
+  },
+  {
+    title: "📑 แบบฟอร์มลงทะเบียนเรียน (KU1)",
+    link: "https://registrar.ku.ac.th/wp-content/uploads/2023/11/KU1-Registration-Form.pdf",
+    keywords: ["เคยู1", "ใบยืนยันลงทะเบียน", "แผนการเรียน", "ku1"]
+  },
+  {
+    title: "🔄 แบบฟอร์มเพิ่มถอน KU3 (Add-Drop Form)",
+    link: "https://registrar.ku.ac.th/wp-content/uploads/2023/11/KU3-Add-Drop-Form.pdf",
+    keywords: ["เพิ่มวิชา", "ถอนวิชา", "ใบเหลือง", "แก้ตารางเรียน", "เคยู3", "add drop", "ku3"]
+  }
+];
+
+// --- Verified Faculty Links ---
+const FACULTY_LINKS = [
+  { name: "คณะเศรษฐศาสตร์ (Economics)", link: "https://www.ku.ac.th/th/faculty-of-economics/", keywords: ["เศรษฐศาสตร์", "economics", "econ"] },
+  { name: "คณะมนุษยศาสตร์ (Humanities)", link: "https://www.ku.ac.th/th/faculty-of-humanities/", keywords: ["มนุษยศาสตร์", "humanities", "มนุษย์"] },
+  { name: "คณะพยาบาลศาสตร์ (Nursing)", link: "https://nurse.ku.ac.th/main/", keywords: ["พยาบาล", "nursing"] },
+  { name: "คณะแพทยศาสตร์ (Medicine)", link: "https://medicine.ku.ac.th/kumed/", keywords: ["แพทย์", "medicine", "หมอ"] },
+  { name: "คณะสิ่งแวดล้อม (Environment)", link: "https://www.ku.ac.th/th/faculty-of-environment/", keywords: ["สิ่งแวดล้อม", "environment"] },
+  { name: "คณะเทคนิคการสัตวแพทย์ (Veterinary Technology)", link: "https://www.ku.ac.th/th/faculty-of-veterinary-technology", keywords: ["เทคนิคการสัตวแพทย์", "veterinary technology"] },
+  { name: "คณะอุตสาหกรรมเกษตร (Agro-Industry)", link: "https://www.ku.ac.th/th/faculty-of-agro-industry/", keywords: ["อุตสาหกรรมเกษตร", "agro-industry", "AI"] },
+  { name: "คณะสัตวแพทยศาสตร์ (Veterinary Science)", link: "https://www.ku.ac.th/th/faculty-of-veterinary-science/", keywords: ["สัตวแพทย์", "veterinary science"] },
+  { name: "คณะประมง (Fisheries)", link: "https://www.ku.ac.th/th/faculty-of-fisheries/", keywords: ["ประมง", "fisheries"] },
+  { name: "คณะบริหารธุรกิจ (Business Administration)", link: "https://www.ku.ac.th/th/faculty-of-business-administration/", keywords: ["บริหารธุรกิจ", "business administration", "บัญชี", "account"] },
+  { name: "คณะเกษตร (Agriculture)", link: "https://www.ku.ac.th/th/faculty-of-agriculture/", keywords: ["คณะเกษตร", "agriculture"] },
+  { name: "คณะศึกษาศาสตร์ (Education)", link: "https://www.ku.ac.th/th/faculty-of-education/", keywords: ["ศึกษาศาสตร์", "education", "ครู"] },
+  { name: "คณะวิศวกรรมศาสตร์ (Engineering)", link: "https://www.ku.ac.th/th/faculty-of-engineering/", keywords: ["วิศวกรรมศาสตร์", "engineering", "วิศวะ"] },
+  { name: "คณะสังคมศาสตร์ (Social Sciences)", link: "https://www.ku.ac.th/th/faculty-of-social-sciences/", keywords: ["สังคมศาสตร์", "social sciences", "social"] },
+  { name: "คณะสถาปัตยกรรมศาสตร์ (Architecture)", link: "https://www.ku.ac.th/th/faculty-of-architecture/", keywords: ["สถาปัตยกรรมศาสตร์", "architecture", "สถาปัตย์"] },
+  { name: "คณะวนศาสตร์ (Forestry)", link: "https://www.ku.ac.th/th/faculty-of-forestry/", keywords: ["วนศาสตร์", "forestry"] },
+  { name: "คณะวิทยาศาสตร์ (Science)", link: "https://www.ku.ac.th/th/faculty-of-science/", keywords: ["วิทยาศาสตร์", "science"] },
+  { name: "คณะสหวิทยาการจัดการและเทคโนโลยี (Interdisciplinary)", link: "https://www.ku.ac.th/th/faculty-of-interdisciplinary/", keywords: ["สหวิทยาการจัดการ", "interdisciplinary"] },
+];
+
 
 export default function App() {
   const [lang, setLang] = useState<Language>('th');
@@ -302,6 +364,32 @@ export default function App() {
         // Simulate a small delay for natural feeling
         await new Promise(resolve => setTimeout(resolve, 500));
         setMessages((prev) => [...prev, { role: 'model', text: faqAnswer }]);
+        setIsLoading(false);
+        return;
+      }
+
+      // Check for Direct Form Links (Keyword match)
+      const matchedForm = FORM_LINKS.find(form => 
+        form.keywords.some(k => userMessage.toLowerCase().includes(k.toLowerCase()))
+      );
+
+      if (matchedForm && !currentImage) {
+        await new Promise(resolve => setTimeout(resolve, 500));
+        const responseText = `### 📎 ดาวน์โหลดแบบฟอร์ม\n\nคุณสามารถดาวน์โหลด **${matchedForm.title}** ได้โดยตรงจากลิงก์ด้านล่างนี้ครับ:\n\n📥 [คลิกเพื่อดาวน์โหลดไฟล์ PDF](${matchedForm.link})`;
+        setMessages((prev) => [...prev, { role: 'model', text: responseText }]);
+        setIsLoading(false);
+        return;
+      }
+
+      // Check for Faculty Links (Keyword match)
+      const matchedFaculty = FACULTY_LINKS.find(f => 
+        f.keywords.some(k => userMessage.toLowerCase().includes(k.toLowerCase()))
+      );
+
+      if (matchedFaculty && !currentImage) {
+        await new Promise(resolve => setTimeout(resolve, 500));
+        const responseText = `### 🏛️ เว็บไซต์คณะ\n\nนี่คือเว็บไซต์ทางการของ **${matchedFaculty.name}** ครับ:\n\n🔗 [เข้าสู่เว็บไซต์คณะ](${matchedFaculty.link})`;
+        setMessages((prev) => [...prev, { role: 'model', text: responseText }]);
         setIsLoading(false);
         return;
       }
